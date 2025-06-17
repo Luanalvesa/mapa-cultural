@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Theater,
   Clapperboard,
@@ -19,6 +19,8 @@ import {
   Cross,
   Film,
   Tent,
+  MessageSquare,
+  Clock,
 } from 'lucide-react';
 
 const USUARIO_VALIDO = {
@@ -130,22 +132,15 @@ function App() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 p-4 bg-white min-h-[calc(100vh-180px)] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 rounded-b-xl">
-        
-            <Categoria titulo="Teatro" Icone={Theater} description="Espaços para apresentações artísticas de Araraquara." onClick={handleCategoryClick} />
-            <Categoria titulo="Cinema" Icone={Clapperboard} onClick={() => setTela('cinema')} description="Locais para filmes e exibições." />
-            <Categoria titulo="Gastronomia" Icone={UtensilsCrossed} description="Experiências culinárias e restaurantes diversos." onClick={handleCategoryClick} />
-            <Categoria titulo="Roda de conversa" Icone={Mic} description="Espaços para debates e discussões." onClick={handleCategoryClick} />
-            <Categoria titulo="Música" Icone={Mic} description="Locais para concertos e eventos musicais." onClick={handleCategoryClick} />
-            <Categoria titulo="Dança" Icone={Theater} description="Espaços para performances e aulas de dança." onClick={handleCategoryClick} />
-            <Categoria titulo="Literatura" Icone={Clapperboard} description="Bibliotecas e eventos literários." onClick={handleCategoryClick} />
-            <Categoria titulo="Exposições" Icone={UtensilsCrossed} description="Galerias e mostras de arte." onClick={handleCategoryClick} />
-           
+            
             <Categoria
               titulo="Rua 5 - Voluntários da Pátria"
               Icone={MapPin}
               endereco="Rua Voluntários da Pátria, Centro"
               description="É uma das ruas mais emblemáticas da cidade, com rica história e beleza natural. A Rua 5 foi rebatizada como Rua Voluntários da Pátria em 1914, em homenagem aos 30 jovens que partiram para a Guerra do Paraguai. Infelizmente, nem todos voltaram do conflito, e a homenagem serve como um lembrete do sacrifício dos cidadãos. A Rua 5 é um cartão postal de Araraquara, com sua beleza paisagística e arquitetônica."
               onClick={handleCategoryClick}
+              openingHours="00:00"
+              closingHours="23:59"
             />
             <Categoria
               titulo="Museu Ferroviário"
@@ -153,6 +148,8 @@ function App() {
               endereco="Rua Antônio Prado, s/n - Centro"
               description="O museu é um local de forte apelo nostálgico e histórico para Araraquara, é uma instituição cultural que preserva a história das ferrovias no Brasil, especialmente em Araraquara. Ele está localizado em um conjunto de prédios da antiga estação ferroviária da cidade. É também conhecido como Museu Ferroviário “Francisco Aureliano de Araújo”."
               onClick={handleCategoryClick}
+              openingHours="09:00"
+              closingHours="17:00"
             />
             <Categoria
               titulo="Parque Natural Municipal do Basalto"
@@ -160,6 +157,8 @@ function App() {
               endereco="Rua Antônio Joaquim de Carvalho - Jd. Pinheiros"
               description="É um verdadeiro oásis de biodiversidade e beleza natural, este parque é uma área de conservação que oferece aos seus visitantes a oportunidade de se conectar com a natureza através de trilhas ecológicas. Uma de suas joias é uma cachoeira encantadora, além das impressionantes formações rochosas de basalto que dão nome ao local."
               onClick={handleCategoryClick}
+              openingHours="08:00"
+              closingHours="18:00"
             />
             <Categoria
               titulo="Igreja Matriz de São Bento"
@@ -167,6 +166,8 @@ function App() {
               endereco="R. Padre Duarte, 1334 - Centro"
               description="É um ponto de referência histórico e cultural da cidade, sendo também a paróquia mais antiga da Diocese de São Carlos. A igreja é um marco da fundação de Araraquara, com seis templos construídos no mesmo local desde 1805."
               onClick={handleCategoryClick}
+              openingHours="07:00"
+              closingHours="20:00"
             />
             <Categoria
               titulo="Bueno de Andrada"
@@ -174,6 +175,8 @@ function App() {
               endereco="Distrito de Bueno de Andrada"
               description="Bueno de Andrada foi criado como distrito de paz em 1924, é um charmoso distrito de Araraquara, no interior de São Paulo, conhecido por sua tranquilidade e, acima de tudo, pelas famosas coxinhas douradas."
               onClick={handleCategoryClick}
+              openingHours="08:00"
+              closingHours="22:00"
             />
             <Categoria
               titulo="Teatro Municipal"
@@ -181,6 +184,8 @@ function App() {
               endereco="Av. Bento de Abreu, 821 - Fonte Luminosa"
               description="Inaugurado em 1990, o teatro foi um marco para a vida cultural de Araraquara e é um dos principais centros culturais da cidade e um espaço fundamental para as artes cênicas da cidade, oferecendo um palco para diversas manifestações de teatro, dança e outras performances."
               onClick={handleCategoryClick}
+              openingHours="10:00"
+              closingHours="22:00"
             />
             <Categoria
               titulo="Parque Infantil"
@@ -188,6 +193,8 @@ function App() {
               endereco="Rua Barão do Rio Branco, s/n - Centro"
               description="É um local muito utilizado para atividades físicas, com pista de caminhada de 800 metros e equipamentos de exercícios, o parque pode ser um local interessante para atividades em família, como caminhadas e piqueniques. O Parque Infantil, em Araraquara, é considerado patrimônio cultural e ambiental da cidade, e é fundamental cuidar da preservação do espaço."
               onClick={handleCategoryClick}
+              openingHours="06:00"
+              closingHours="21:00"
             />
             <Categoria
               titulo="Museu Histórico e Pedagógico"
@@ -195,6 +202,8 @@ function App() {
               endereco="Rua João Gurgel, 1904 - Centro"
               description="O Museu Histórico e Pedagógico “Voluntários da Pátria” é, portanto, um guardião do passado de Araraquara, um espaço de educação e cultura que permite aos visitantes se conectarem com a história e a identidade da “Morada do Sol”. É um local de pesquisa e aprendizado para estudantes, pesquisadores e a comunidade em geral."
               onClick={handleCategoryClick}
+              openingHours="09:00"
+              closingHours="17:00"
             />
             <Categoria
               titulo="Museu de Arqueologia e Paleontologia"
@@ -202,6 +211,8 @@ function App() {
               endereco="Rua Voluntários da Pátria, 1108 - Centro"
               description="O Museu de Arqueologia e Paleontologia de Araraquara, inaugurado em 2008, é vasto e abrange tanto a arqueologia quanto a paleontologia, com um foco especial nas descobertas locais que colocaram a cidade no cenário científico internacional. É um testemunho fundamental da rica história geológica e da ocupação humana da região, oferecendo aos visitantes uma jornada no tempo que abrange milhões de anos e a evolução da vida no planeta, com um foco especial nas descobertas e pesquisas locais."
               onClick={handleCategoryClick}
+              openingHours="09:00"
+              closingHours="17:00"
             />
             <Categoria
               titulo="Shopping Jaraguá"
@@ -209,6 +220,8 @@ function App() {
               endereco="Av. Alberto Benassi, 2270 - Jd. dos Manacás"
               description="O Shopping Jaraguá de Araraquara é um dos principais centros de compras, lazer e entretenimento da cidade e da região central do estado de São Paulo. Inaugurado em 2001, ele se consolidou como um ponto de referência para os moradores de Araraquara e municípios vizinhos. Diversas opções de restaurantes e fast-foods para todos os gostos, conta com 5 salas de cinema de sistema 3D e oferece uma grande variedade de lojas dos mais diversos segmentos, incluindo moda, acessórios, eletrônicos, cosméticos, entre outros."
               onClick={handleCategoryClick}
+              openingHours="10:00"
+              closingHours="22:00"
             />
             <Categoria
               titulo="Bar do Zinho"
@@ -216,6 +229,8 @@ function App() {
               endereco="Av. São Paulo, 1261 - Vila Prado"
               description="O local é um famoso botecão com uma praça bem em frente e, talvez por isso mesmo, seja famoso na cidade. O ambiente é descontraído e a atração aqui são os próprios frequentadores."
               onClick={handleCategoryClick}
+              openingHours="17:00"
+              closingHours="01:00"
             />
             <Categoria
               titulo="Shopping Lupo"
@@ -223,6 +238,8 @@ function App() {
               endereco="Rua Padre Duarte, 1515 - Centro"
               description="Shopping no centro da cidade com lojas de roupas e acessórios, cinema e praça de alimentação. O Shopping foi inaugurado em 17 de outubro de 2002 e traz até hoje muita tradição e emoção no coração de todos araraquarenses."
               onClick={handleCategoryClick}
+              openingHours="09:00"
+              closingHours="21:00"
             />
             <Categoria
               titulo="Café Espanha"
@@ -230,6 +247,8 @@ function App() {
               endereco="R. Nove de Julho, 1071 - Centro"
               description="O Café Espanha é uma cafeteria tradicional em Araraquara, conhecida por ser um local agradável para tomar um café e fazer um lanche. Não se trata de shopping center, mas sim de um estabelecimento focado em cafeteria e lanchonete. É descrito como um estabelecimento sereno, com um serviço notável e um ambiente familiar e agradável. É frequentemente recomendado para quem quer desfrutar de uma boa xícara de café, um de seus itens mais elogiados e populares é o pão de batata salgado com requeijão, que é um favorito entre os clientes. Eles também são conhecidos por terem um dos melhores cappuccinos da cidade."
               onClick={handleCategoryClick}
+              openingHours="07:00"
+              closingHours="19:00"
             />
             <Categoria
               titulo="Igreja Santa Cruz"
@@ -237,6 +256,8 @@ function App() {
               endereco="Praça Santa Cruz, 303 - Centro"
               description="A Igreja Santa Cruz, com seu estilo arquitetônico, é um marco histórico, cultural e religioso de Araraquara, testemunhando e participando do desenvolvimento da cidade ao longo de mais de um século. A igreja tem um papel ativo na comunidade, com diversas missas, novenas e atividades pastorais, em 2021, a Igreja Santa Cruz de Araraquara completou 150 anos de história, contando desde a inauguração da capela original."
               onClick={handleCategoryClick}
+              openingHours="08:00"
+              closingHours="20:00"
             />
             <Categoria
               titulo="Museu da Imagem e do Som"
@@ -244,6 +265,8 @@ function App() {
               endereco="Rua Barão do Rio Branco, 1097 - Centro"
               description="O Museu da Imagem e do Som (MIS) de Araraquara é um importante espaço cultural da cidade, dedicado à preservação e difusão da memória visual e sonora local. O principal objetivo do MIS é preservar a memória de Araraquara por meio de registros visuais e sonoros, tornando-os acessíveis ao público e contribuindo para a pesquisa e o conhecimento da história local. Além de preservar o acervo, o museu pode promover exposições, mostras, cursos e oficinas relacionadas à imagem e ao som, embora as informações mais recentes foquem mais no seu papel de guardião do acervo histórico."
               onClick={handleCategoryClick}
+              openingHours="09:00"
+              closingHours="18:00"
             />
             <Categoria
               titulo="Sesc"
@@ -251,10 +274,18 @@ function App() {
               endereco="Rua Castro Alves, 1315 - Quitandinha"
               description="O Sesc de Araraquara é um centro cultural e esportivo muito dinâmico, que oferece uma vasta programação para todas as idades e interesses. De atrações fixas e estrutura têm: piscinas para adultos e crianças, quadras e campos esportivos, apresentações de teatro / auditório, exposições para obras de artes, biblioteca, lanchonete / restaurante e espaços de convivência."
               onClick={handleCategoryClick}
+              openingHours="09:00"
+              closingHours="21:00"
             />
           </div>
 
           <div className="flex justify-center p-4 bg-white rounded-b-xl">
+            <button
+              onClick={() => setTela('feedbackGeral')}
+              className="text-green-600 hover:underline flex items-center mr-4"
+            >
+              <MessageSquare className="mr-1" size={18} /> Dar Feedback Geral
+            </button>
             <button
               onClick={() => setTela('login')}
               className="text-green-600 hover:underline"
@@ -266,15 +297,23 @@ function App() {
       ) : tela === 'cinema' ? (
         <CinemaScreen onVoltar={() => setTela('home')} />
       ) : tela === 'detalheLocal' ? (
-        <DetalheLocalScreen local={selectedLocal} onVoltar={() => setTela('home')} />
+        <DetalheLocalScreen
+          local={selectedLocal}
+          onVoltar={() => setTela('home')}
+          onDarFeedback={() => setTela('feedbackLocal')} // Novo prop para feedback do local
+        />
+      ) : tela === 'feedbackGeral' ? (
+        <FeedbackGeralScreen onVoltar={() => setTela('home')} />
+      ) : tela === 'feedbackLocal' ? (
+        <FeedbackLocalScreen local={selectedLocal} onVoltar={() => setTela('detalheLocal')} />
       ) : null}
     </div>
   );
 }
 
 
-function Categoria({ titulo, Icone, onClick, endereco, description }) {
-  const localData = { titulo, Icone, endereco, description };
+function Categoria({ titulo, Icone, onClick, endereco, description, openingHours, closingHours }) {
+  const localData = { titulo, Icone, endereco, description, openingHours, closingHours };
   return (
     <div
       onClick={() => onClick(localData)}
@@ -294,7 +333,7 @@ function CinemaScreen({ onVoltar }) {
     <div className="min-h-screen bg-white p-4 w-full mx-auto max-w-xl lg:rounded-xl lg:shadow-lg lg:my-8 font-inter">
       <div className="bg-green-100 p-4 rounded-xl mb-4">
         <h2 className="text-center text-lg font-semibold">Cinema</h2>
-        <p className="text-center text-sm">09 de Junho de 2025</p>
+        <p className="text-center text-sm">17 de Junho de 2025</p>
       </div>
 
       <div className="space-y-4">
@@ -406,7 +445,52 @@ function RegisterScreen({ onVoltar }) {
   );
 }
 
-function DetalheLocalScreen({ local, onVoltar }) {
+function DetalheLocalScreen({ local, onVoltar, onDarFeedback }) {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60 * 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const getStatus = () => {
+    if (!local.openingHours || !local.closingHours) {
+      return { text: "Horário não informado", color: "text-gray-600" };
+    }
+
+    const [openHour, openMinute] = local.openingHours.split(':').map(Number);
+    const [closeHour, closeMinute] = local.closingHours.split(':').map(Number);
+
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+
+    const nowInMinutes = currentHour * 60 + currentMinute;
+    const openInMinutes = openHour * 60 + openMinute;
+    const closeInMinutes = closeHour * 60 + closeMinute;
+
+    // Horário de funcionamento que passa para o dia seguinte (ex: 17:00 - 01:00)
+    if (openInMinutes > closeInMinutes) {
+      // Se a hora atual estiver entre a abertura (no dia atual) e a meia-noite, OU entre meia-noite e o fechamento (no dia seguinte)
+      if (nowInMinutes >= openInMinutes || nowInMinutes <= closeInMinutes) {
+        return { text: "Aberto agora", color: "text-green-600" };
+      } else {
+        return { text: "Fechado", color: "text-red-600" };
+      }
+    } else {
+      // Horário de funcionamento que abre e fecha no mesmo dia
+      if (nowInMinutes >= openInMinutes && nowInMinutes <= closeInMinutes) {
+        return { text: "Aberto agora", color: "text-green-600" };
+      } else {
+        return { text: "Fechado", color: "text-red-600" };
+      }
+    }
+  };
+
+  const status = getStatus();
+
   if (!local) {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4 w-full mx-auto max-w-xl lg:rounded-xl lg:shadow-lg lg:my-8 font-inter">
@@ -429,18 +513,140 @@ function DetalheLocalScreen({ local, onVoltar }) {
         {local.endereco && (
           <p className="text-sm text-gray-700 mt-1">{local.endereco}</p>
         )}
+        {(local.openingHours && local.closingHours) && (
+          <div className="mt-2 flex items-center justify-center">
+            <Clock className="text-gray-600 mr-1" size={16} />
+            <p className="text-sm text-gray-700">
+              {local.openingHours} - {local.closingHours}
+            </p>
+            <span className={`ml-2 font-semibold ${status.color}`}>
+              ({status.text})
+            </span>
+          </div>
+        )}
+        {(!local.openingHours || !local.closingHours) && (
+          <p className="text-sm text-gray-600 mt-1">Horário de funcionamento não disponível.</p>
+        )}
       </div>
 
       <div className="bg-white p-4 rounded-xl shadow-md">
         <p className="text-gray-800 text-base leading-relaxed">{local.description || "Nenhuma descrição disponível para este local."}</p>
       </div>
 
-      <div className="flex justify-center mt-6">
+      <div className="flex justify-center mt-6 space-x-4">
         <button
           onClick={onVoltar}
           className="text-green-600 hover:underline"
         >
           Voltar para a Home
+        </button>
+        <button
+          onClick={onDarFeedback}
+          className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+        >
+          Dar Feedback sobre o Local
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function FeedbackGeralScreen({ onVoltar }) {
+  const [feedbackText, setFeedbackText] = useState('');
+  const [feedbackSent, setFeedbackSent] = useState(false);
+
+  const handleSubmitFeedback = () => {
+    if (feedbackText.trim() === '') {
+      alert('Por favor, escreva seu feedback antes de enviar.');
+      return;
+    }
+    console.log('Feedback geral enviado:', feedbackText);
+    setFeedbackSent(true);
+    setFeedbackText('');
+  };
+
+  return (
+    <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-sm mx-4 sm:mx-auto">
+      <h2 className="text-2xl font-bold mb-4 text-center text-green-700">Dar Feedback Geral</h2>
+      {feedbackSent ? (
+        <div className="text-center text-green-600 mb-4">
+          <p>Obrigado pelo seu feedback geral!</p>
+          <p>Ele nos ajuda a melhorar o aplicativo.</p>
+        </div>
+      ) : (
+        <>
+          <textarea
+            className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+            rows="5"
+            placeholder="Compartilhe suas sugestões ou problemas gerais do aplicativo..."
+            value={feedbackText}
+            onChange={(e) => setFeedbackText(e.target.value)}
+          ></textarea>
+          <button
+            onClick={handleSubmitFeedback}
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+          >
+            Enviar Feedback
+          </button>
+        </>
+      )}
+      <div className="mt-4 text-center">
+        <button
+          onClick={onVoltar}
+          className="text-green-600 hover:underline text-sm"
+        >
+          Voltar para a Home
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function FeedbackLocalScreen({ local, onVoltar }) {
+  const [feedbackText, setFeedbackText] = useState('');
+  const [feedbackSent, setFeedbackSent] = useState(false);
+
+  const handleSubmitFeedback = () => {
+    if (feedbackText.trim() === '') {
+      alert('Por favor, escreva seu feedback antes de enviar.');
+      return;
+    }
+    console.log(`Feedback para ${local.titulo} enviado:`, feedbackText);
+    setFeedbackSent(true);
+    setFeedbackText('');
+  };
+
+  return (
+    <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-sm mx-4 sm:mx-auto">
+      <h2 className="text-2xl font-bold mb-4 text-center text-green-700">Feedback sobre {local.titulo}</h2>
+      {feedbackSent ? (
+        <div className="text-center text-green-600 mb-4">
+          <p>Obrigado pelo seu feedback sobre {local.titulo}!</p>
+          <p>Sua opinião é muito importante.</p>
+        </div>
+      ) : (
+        <>
+          <textarea
+            className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+            rows="5"
+            placeholder={`Compartilhe suas observações sobre ${local.titulo}...`}
+            value={feedbackText}
+            onChange={(e) => setFeedbackText(e.target.value)}
+          ></textarea>
+          <button
+            onClick={handleSubmitFeedback}
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+          >
+            Enviar Feedback
+          </button>
+        </>
+      )}
+      <div className="mt-4 text-center">
+        <button
+          onClick={onVoltar}
+          className="text-green-600 hover:underline text-sm"
+        >
+          Voltar para {local.titulo}
         </button>
       </div>
     </div>
