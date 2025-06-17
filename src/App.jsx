@@ -479,7 +479,7 @@ function DetalheLocalScreen({ local, onVoltar, onDarFeedback }) {
         return { text: "Fechado", color: "text-red-600" };
       }
     } else {
-      // Horário de funcionamento que abre e fecha no mesmo dia
+   
       if (nowInMinutes >= openInMinutes && nowInMinutes <= closeInMinutes) {
         return { text: "Aberto agora", color: "text-green-600" };
       } else {
