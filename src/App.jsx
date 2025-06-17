@@ -300,7 +300,7 @@ function App() {
         <DetalheLocalScreen
           local={selectedLocal}
           onVoltar={() => setTela('home')}
-          onDarFeedback={() => setTela('feedbackLocal')} // Novo prop para feedback do local
+          onDarFeedback={() => setTela('feedbackLocal')} 
         />
       ) : tela === 'feedbackGeral' ? (
         <FeedbackGeralScreen onVoltar={() => setTela('home')} />
@@ -471,9 +471,8 @@ function DetalheLocalScreen({ local, onVoltar, onDarFeedback }) {
     const openInMinutes = openHour * 60 + openMinute;
     const closeInMinutes = closeHour * 60 + closeMinute;
 
-    // Horário de funcionamento que passa para o dia seguinte (ex: 17:00 - 01:00)
+
     if (openInMinutes > closeInMinutes) {
-      // Se a hora atual estiver entre a abertura (no dia atual) e a meia-noite, OU entre meia-noite e o fechamento (no dia seguinte)
       if (nowInMinutes >= openInMinutes || nowInMinutes <= closeInMinutes) {
         return { text: "Aberto agora", color: "text-green-600" };
       } else {
