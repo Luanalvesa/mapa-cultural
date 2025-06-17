@@ -22,6 +22,8 @@ import {
   MessageSquare,
   Clock,
 } from 'lucide-react';
+  import { FaFutbol } from 'react-icons/fa';
+  import { FaTree } from "react-icons/fa"; 
 
 const USUARIO_VALIDO = {
   email: 'teste@exemplo.com',
@@ -277,6 +279,26 @@ function App() {
               openingHours="09:00"
               closingHours="21:00"
             />
+            <Categoria
+              titulo="Arena Fonte Luminosa"
+              Icone={FaFutbol}
+              endereco="R. Mauro Pinheiro, s/n - Jardim Primavera, Araraquara - SP, 14802-355"
+              description="O Estádio Municipal Olivério Bazzani Filho, ou Arena da Fonte Luminosa, está localizado na cidade brasileira de Araraquara, no interior de São Paulo. 
+              É o estádio onde a Associação Ferroviária de Esportes manda seus jogos."
+              onClick={handleCategoryClick}
+              openingHours=""
+              closingHours=""
+              />
+            <Categoria
+              titulo="Parque Pinheirinho"
+              Icone={FaTree}
+              endereco="Av. Francisco Vaz Filho, s/n - Jardim Pinheiros (Vila Xavier), Araraquara - SP, 14811-418"
+              description="Área recreativa verde, com percursos de exercício, 
+              recantos de descanso e piscina pública, além de kartódromo.."
+              onClick={handleCategoryClick}
+              openingHours="06:00"
+              closingHours="18:00"
+              />
           </div>
 
           <div className="flex justify-center p-4 bg-white rounded-b-xl">
@@ -310,8 +332,6 @@ function App() {
     </div>
   );
 }
-
-
 function Categoria({ titulo, Icone, onClick, endereco, description, openingHours, closingHours }) {
   const localData = { titulo, Icone, endereco, description, openingHours, closingHours };
   return (
