@@ -22,8 +22,8 @@ import {
   MessageSquare,
   Clock,
 } from 'lucide-react';
-  import { FaFutbol } from 'react-icons/fa';
-  import { FaTree } from "react-icons/fa"; 
+import { FaFutbol } from 'react-icons/fa';
+import { FaTree } from "react-icons/fa"; 
 
 const USUARIO_VALIDO = {
   email: 'teste@exemplo.com',
@@ -50,9 +50,9 @@ function App() {
   const getFilterClasses = (filterName) => {
     const baseClasses = "whitespace-nowrap px-4 py-2 rounded-full cursor-pointer transition-colors duration-200";
     if (selectedFilter === filterName) {
-      return `${baseClasses} bg-green-100 border border-green-600 text-green-600`;
+      return `${baseClasses} bg-[#fae7e3] border border-[#EB5939] text-[#EB5939]`;
     }
-    return `${baseClasses} border border-gray-300 hover:bg-green-100 text-black`;
+    return `${baseClasses} border border-gray-300 hover:bg-[#fae7e3] text-black`;
   };
 
   const handleCategoryClick = (localData) => {
@@ -61,27 +61,27 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-green-50 flex flex-col items-center justify-center overflow-auto font-inter">
+    <div className="min-h-screen bg-[#fef2f0] flex flex-col items-center justify-center overflow-auto font-inter">
       {tela === 'login' ? (
         <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-sm mx-4 sm:mx-auto">
-          <h2 className="text-2xl font-bold mb-4 text-center text-green-700">Login</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center text-[#d24f33]">Login</h2>
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full mb-3 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full mb-3 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#efc0b5]"
           />
           <input
             type="password"
             placeholder="Senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-            className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#efc0b5]"
           />
           <button
             onClick={handleLogin}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+            className="w-full bg-[#EB5939] hover:bg-[#d24f33] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
           >
             Entrar
           </button>
@@ -89,7 +89,7 @@ function App() {
           <div className="mt-4 text-center">
             <button
               onClick={() => setTela('register')}
-              className="text-green-600 hover:underline text-sm"
+              className="text-[#EB5939] hover:underline text-sm"
             >
               Não tem conta? Crie uma aqui!
             </button>
@@ -99,7 +99,7 @@ function App() {
         <RegisterScreen onVoltar={() => setTela('login')} />
       ) : tela === 'home' ? (
         <div className="w-full h-full lg:max-w-2xl lg:rounded-xl lg:shadow-lg lg:my-8">
-          <div className="bg-green-100 p-4 rounded-t-xl">
+          <div className="bg-[#fae7e3] p-4 rounded-t-xl">
             <div className="relative flex justify-center items-start w-full">
               <h1 className="text-lg font-bold text-black text-center">
                 Mapa Cultural<br />Araraquara
@@ -109,7 +109,7 @@ function App() {
             <input
               type="text"
               placeholder="🔍 Buscar eventos"
-              className="mt-3 w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="mt-3 w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#efc0b5]"
             />
             <div className="flex flex-wrap justify-center gap-2 mt-4 text-sm font-medium">
               <span
@@ -304,13 +304,13 @@ function App() {
           <div className="flex justify-center p-4 bg-white rounded-b-xl">
             <button
               onClick={() => setTela('feedbackGeral')}
-              className="text-green-600 hover:underline flex items-center mr-4"
+              className="text-[#EB5939] hover:underline flex items-center mr-4"
             >
               <MessageSquare className="mr-1" size={18} /> Dar Feedback Geral
             </button>
             <button
               onClick={() => setTela('login')}
-              className="text-green-600 hover:underline"
+              className="text-[#EB5939] hover:underline"
             >
               Sair
             </button>
@@ -337,7 +337,7 @@ function Categoria({ titulo, Icone, onClick, endereco, description, openingHours
   return (
     <div
       onClick={() => onClick(localData)}
-      className="bg-green-50 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:bg-green-100 transition-colors duration-200"
+      className="bg-[#fef2f0] rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:bg-[#fae7e3] transition-colors duration-200"
     >
       <Icone className="text-black mb-2" size={40} />
       <span className="text-center text-sm text-black font-medium">{titulo}</span>
@@ -351,7 +351,7 @@ function Categoria({ titulo, Icone, onClick, endereco, description, openingHours
 function CinemaScreen({ onVoltar }) {
   return (
     <div className="min-h-screen bg-white p-4 w-full mx-auto max-w-xl lg:rounded-xl lg:shadow-lg lg:my-8 font-inter">
-      <div className="bg-green-100 p-4 rounded-xl mb-4">
+      <div className="bg-[#fae7e3] p-4 rounded-xl mb-4">
         <h2 className="text-center text-lg font-semibold">Cinema</h2>
         <p className="text-center text-sm">17 de Junho de 2025</p>
       </div>
@@ -365,7 +365,7 @@ function CinemaScreen({ onVoltar }) {
       <div className="flex justify-center mt-6">
         <button
           onClick={onVoltar}
-          className="text-green-600 hover:underline"
+          className="text-[#EB5939] hover:underline"
         >
           Voltar
         </button>
@@ -378,7 +378,7 @@ function Dropdown({ titulo }) {
   const [aberto, setAberto] = useState(false);
 
   return (
-    <div className="bg-green-100 p-3 rounded-xl cursor-pointer hover:bg-green-200 transition-colors duration-200" onClick={() => setAberto(!aberto)}>
+    <div className="bg-[#fae7e3] p-3 rounded-xl cursor-pointer hover:bg-[#f5dad3] transition-colors duration-200" onClick={() => setAberto(!aberto)}>
       <div className="flex justify-between items-center">
         <span>{titulo}</span>
         <span className="text-black">{aberto ? '▲' : '▼'}</span>
@@ -423,40 +423,40 @@ function RegisterScreen({ onVoltar }) {
 
   return (
     <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-sm mx-4 sm:mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-center text-green-700">Criar Conta</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-[#d24f33]">Criar Conta</h2>
       <input
         type="email"
         placeholder="Email"
         value={newEmail}
         onChange={(e) => setNewEmail(e.target.value)}
-        className="w-full mb-3 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+        className="w-full mb-3 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#efc0b5]"
       />
       <input
         type="password"
         placeholder="Senha"
         value={newSenha}
         onChange={(e) => setNewSenha(e.target.value)}
-        className="w-full mb-3 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+        className="w-full mb-3 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#efc0b5]"
       />
       <input
         type="password"
         placeholder="Confirmar Senha"
         value={confirmSenha}
         onChange={(e) => setConfirmSenha(e.target.value)}
-        className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+        className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#efc0b5]"
       />
       <button
         onClick={handleRegister}
-        className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+        className="w-full bg-[#EB5939] hover:bg-[#d24f33] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
       >
         Registrar
       </button>
       {registerError && <p className="text-red-500 mt-3 text-center">{registerError}</p>}
-      {registerSuccess && <p className="text-green-600 mt-3 text-center">{registerSuccess}</p>}
+      {registerSuccess && <p className="text-red-500 mt-3 text-center">{registerSuccess}</p>}
       <div className="mt-4 text-center">
         <button
           onClick={onVoltar}
-          className="text-green-600 hover:underline text-sm"
+          className="text-[#EB5939] hover:underline text-sm"
         >
           Voltar ao Login
         </button>
@@ -494,14 +494,14 @@ function DetalheLocalScreen({ local, onVoltar, onDarFeedback }) {
 
     if (openInMinutes > closeInMinutes) {
       if (nowInMinutes >= openInMinutes || nowInMinutes <= closeInMinutes) {
-        return { text: "Aberto agora", color: "text-green-600" };
+        return { text: "Aberto agora", color: "text-[#EB5939]" };
       } else {
         return { text: "Fechado", color: "text-red-600" };
       }
     } else {
-   
+    
       if (nowInMinutes >= openInMinutes && nowInMinutes <= closeInMinutes) {
-        return { text: "Aberto agora", color: "text-green-600" };
+        return { text: "Aberto agora", color: "text-[#EB5939]" };
       } else {
         return { text: "Fechado", color: "text-red-600" };
       }
@@ -516,7 +516,7 @@ function DetalheLocalScreen({ local, onVoltar, onDarFeedback }) {
         <p className="text-gray-700">Nenhum local selecionado.</p>
         <button
           onClick={onVoltar}
-          className="mt-6 text-green-600 hover:underline"
+          className="mt-6 text-[#EB5939] hover:underline"
         >
           Voltar para a Home
         </button>
@@ -526,7 +526,7 @@ function DetalheLocalScreen({ local, onVoltar, onDarFeedback }) {
 
   return (
     <div className="min-h-screen bg-white p-4 w-full mx-auto max-w-xl lg:rounded-xl lg:shadow-lg lg:my-8 font-inter">
-      <div className="bg-green-100 p-4 rounded-xl mb-4 text-center">
+      <div className="bg-[#fae7e3] p-4 rounded-xl mb-4 text-center">
         <local.Icone className="text-black mx-auto mb-2" size={50} />
         <h2 className="text-xl font-bold text-black">{local.titulo}</h2>
         {local.endereco && (
@@ -555,13 +555,13 @@ function DetalheLocalScreen({ local, onVoltar, onDarFeedback }) {
       <div className="flex justify-center mt-6 space-x-4">
         <button
           onClick={onVoltar}
-          className="text-green-600 hover:underline"
+          className="text-[#EB5939] hover:underline"
         >
           Voltar para a Home
         </button>
         <button
           onClick={onDarFeedback}
-          className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+          className="bg-[#EB5939] hover:bg-[#d24f33] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
           Dar Feedback sobre o Local
         </button>
@@ -586,16 +586,16 @@ function FeedbackGeralScreen({ onVoltar }) {
 
   return (
     <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-sm mx-4 sm:mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-center text-green-700">Dar Feedback Geral</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-[#d24f33]">Dar Feedback Geral</h2>
       {feedbackSent ? (
-        <div className="text-center text-green-600 mb-4">
+        <div className="text-center text-[#EB5939] mb-4">
           <p>Obrigado pelo seu feedback geral!</p>
           <p>Ele nos ajuda a melhorar o aplicativo.</p>
         </div>
       ) : (
         <>
           <textarea
-            className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#efc0b5]"
             rows="5"
             placeholder="Compartilhe suas sugestões ou problemas gerais do aplicativo..."
             value={feedbackText}
@@ -603,7 +603,7 @@ function FeedbackGeralScreen({ onVoltar }) {
           ></textarea>
           <button
             onClick={handleSubmitFeedback}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+            className="w-full bg-[#EB5939] hover:bg-[#d24f33] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
           >
             Enviar Feedback
           </button>
@@ -612,7 +612,7 @@ function FeedbackGeralScreen({ onVoltar }) {
       <div className="mt-4 text-center">
         <button
           onClick={onVoltar}
-          className="text-green-600 hover:underline text-sm"
+          className="text-[#EB5939] hover:underline text-sm"
         >
           Voltar para a Home
         </button>
@@ -637,16 +637,16 @@ function FeedbackLocalScreen({ local, onVoltar }) {
 
   return (
     <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-sm mx-4 sm:mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-center text-green-700">Feedback sobre {local.titulo}</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-[#d24f33]">Feedback sobre {local.titulo}</h2>
       {feedbackSent ? (
-        <div className="text-center text-green-600 mb-4">
+        <div className="text-center text-[#EB5939] mb-4">
           <p>Obrigado pelo seu feedback sobre {local.titulo}!</p>
           <p>Sua opinião é muito importante.</p>
         </div>
       ) : (
         <>
           <textarea
-            className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full mb-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#efc0b5]"
             rows="5"
             placeholder={`Compartilhe suas observações sobre ${local.titulo}...`}
             value={feedbackText}
@@ -654,7 +654,7 @@ function FeedbackLocalScreen({ local, onVoltar }) {
           ></textarea>
           <button
             onClick={handleSubmitFeedback}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+            className="w-full bg-[#EB5939] hover:bg-[#d24f33] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
           >
             Enviar Feedback
           </button>
@@ -663,7 +663,7 @@ function FeedbackLocalScreen({ local, onVoltar }) {
       <div className="mt-4 text-center">
         <button
           onClick={onVoltar}
-          className="text-green-600 hover:underline text-sm"
+          className="text-[#EB5939] hover:underline text-sm"
         >
           Voltar para {local.titulo}
         </button>
